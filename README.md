@@ -1,3 +1,8 @@
+## Project Video Demonstration
+
+You can watch the video demonstration of this project here: [Video Link](https://drive.google.com/file/d/1f_QzZjnDm5rDYjkqHqO-EQiurMGsLaZV/view?usp=sharing)
+
+
 # Knowledge Base Search Backend
 
 A powerful FastAPI-based backend service for document search and question answering using RAG (Retrieval Augmented Generation). This system combines vector similarity search with LLM-powered answer generation to provide accurate responses to queries based on ingested documents.
@@ -142,4 +147,5 @@ Features:
 - Coverage reporting with HTML and terminal output
 - Clear pass/fail status indication
 - Environment validation
+
 

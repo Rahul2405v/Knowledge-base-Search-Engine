@@ -55,25 +55,9 @@ vector_store/documents.pkl
 vector_store/*.faiss
 vector_store/*.pkl
 
-# Model/weights caches
-models/
-model/
-*.bin
-*.pt
-*.ckpt
 
 # Large data / example data (optional)
 example_data/
-
-# Logs
-*.log
-logs/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Misc
-*.sqlite3
 
 # Allow local override of gitignore (if needed)
 !.gitignore_local

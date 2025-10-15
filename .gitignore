@@ -9,7 +9,8 @@ venv/
 .env
 ENV/
 env/
-
+.env
+.env.example
 # Byte-compiled / optimized / DLL files
 *.so
 *.dylib

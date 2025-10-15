@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.env
+ENV/
+env/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dylib
+
+# Distribution / packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# dotenv and secrets
+.env
+.env.*
+secrets.toml
+
+# FAISS and vector store artifacts
+vector_store/index.faiss
+vector_store/documents.pkl
+vector_store/*.faiss
+vector_store/*.pkl
+
+# Model/weights caches
+models/
+model/
+*.bin
+*.pt
+*.ckpt
+
+# Large data / example data (optional)
+example_data/
+
+# Logs
+*.log
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Misc
+*.sqlite3
+
+# Allow local override of gitignore (if needed)
+!.gitignore_local

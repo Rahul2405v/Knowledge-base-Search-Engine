@@ -1,0 +1,9 @@
+This is a sample document for testing the knowledge base upload functionality.
+
+It contains information about machine learning and artificial intelligence.
+
+Machine learning is a subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed.
+
+Deep learning uses neural networks with multiple layers to model complex patterns in data.
+
+Natural language processing helps computers understand human language.

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base Test Interface</title>
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Container */
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Typography */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        h2 {
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 500;
+        }
+        
+        /* Sections */
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Form Elements */
+        input, textarea, button, select {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        /* Form Controls */
+        .form-group {
+            margin: 15px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        select {
+            width: auto;
+            min-width: 100px;
+            margin-left: 10px;
+        }
+        
+        /* Results */
+        .result {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 60px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #155724;
+            color: #155724;
+        }
+        
+        .error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border: 2px solid #721c24;
+            color: #721c24;
+        }
+        
+        .info {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border: 2px solid #0c5460;
+            color: #0c5460;
+        }
+        
+        /* Passages */
+        .passage {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-left: 5px solid #667eea;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .passage strong {
+            color: #333;
+        }
+        
+        .passage small {
+            color: #666;
+            font-size: 0.85em;
+        }
+        
+        /* Utilities */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-3 {
+            margin-top: 20px;
+        }
+        
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 Knowledge Base Test Interface</h1>
+        
+        <!-- File Upload Section -->
+        <div class="section">
+            <h2>📤 Upload Documents</h2>
+            <div class="form-group">
+                <label for="fileInput">Choose a file (PDF or TXT):</label>
+                <input type="file" id="fileInput" accept=".txt,.pdf" />
+            </div>
+            <button onclick="uploadFile()">Upload File</button>
+            <div id="uploadResult" class="result" style="display: none;"></div>
+        </div>
+        
+        <!-- Query Section -->
+        <div class="section">
+            <h2>❓ Ask Questions</h2>
+            <div class="form-group">
+                <label for="questionInput">Your Question:</label>
+                <input 
+                    type="text" 
+                    id="questionInput" 
+                    placeholder="Enter your question here..." 
+                    autocomplete="off"
+                />
+            </div>
+            <div class="form-group">
+                <label for="topK">
+                    Number of results: 
+                    <select id="topK">
+                        <option value="3">3</option>
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                    </select>
+                </label>
+            </div>
+            <button onclick="askQuestion()">Ask Question</button>
+            <div id="queryResult" class="result" style="display: none;"></div>
+        </div>
+        
+        <!-- Quick Test Buttons -->
+        <div class="section">
+            <h2>🚀 Quick Tests</h2>
+            <div class="form-group">
+                <button onclick="testHealthCheck()">Test Server Health</button>
+            </div>
+            <div class="form-group">
+                <button onclick="askSampleQuestion()">Ask Sample Question</button>
+            </div>
+            <div class="form-group">
+                <button onclick="clearAllResults()">Clear All Results</button>
+            </div>
+            <div id="testResult" class="result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const BASE_URL = 'http://localhost:8000';
+        
+        // Utility Functions
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `result ${type}`;
+            element.style.display = 'block';
+            
+            // Auto-scroll to result
+            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function hideResult(elementId) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'none';
+        }
+        
+        function clearAllResults() {
+            const resultElements = ['uploadResult', 'queryResult', 'testResult'];
+            resultElements.forEach(hideResult);
+            
+            // Clear form inputs
+            document.getElementById('questionInput').value = '';
+            document.getElementById('fileInput').value = '';
+        }
+        
+        // API Functions
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showResult('uploadResult', '❌ Please select a file first', 'error');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                showResult('uploadResult', '⏳ Uploading file, please wait...', 'info');
+                
+                const response = await fetch(`${BASE_URL}/ingest`, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors'
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('uploadResult', 
+                        `✅ <strong>Upload Successful!</strong><br>
+                         📄 ${result.message}<br>
+                         📊 Documents inserted: <strong>${result.inserted}</strong>`, 
+                        'success');
+                } else {
+                    showResult('uploadResult', 
+                        `❌ <strong>Upload Failed</strong><br>
+                         ${result.detail || 'Unknown error occurred'}`, 
+                        'error');
+                }
+                
+            } catch (error) {
+                console.error('Upload error:', error);
+                showResult('uploadResult', 
+                    `❌ <strong>Network Error</strong><br>
+                     ${error.message}<br>
+                     <small>Make sure the server is running on ${BASE_URL}</small>`, 
+                    'error');
+            }
+        }
+        
+        async function askQuestion() {
+            const question = document.getElementById('questionInput').value.trim();
+            const topK = parseInt(document.getElementById('topK').value);
+            
+            if (!question) {
+                showResult('queryResult', '❌ Please enter a question', 'error');
+                return;
+            }
+            
+            try {
+                showResult('queryResult', '⏳ Searching knowledge base...', 'info');
+                
+                const response = await fetch(`${BASE_URL}/query`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        q: question,
+                        top_k: topK
+                    }),
+                    mode: 'cors'
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    let html = `
+                        <h3>💡 Answer:</h3>
+                        <div style="background: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                            ${result.answer}
+                        </div>
+                    `;
+                    
+                    if (result.passages && result.passages.length > 0) {
+                        html += `
+                            <h3>📄 Relevant Passages (${result.passages.length}):</h3>
+                        `;
+                        
+                        result.passages.forEach((passage, index) => {
+                            html += `
+                                <div class="passage">
+                                    <strong>📄 Passage ${index + 1}:</strong><br>
+                                    <div style="margin: 10px 0;">${passage.text}</div>
+                                    <small>
+                                        <strong>📁 Source:</strong> ${passage.source} | 
+                                        <strong>🎯 Score:</strong> ${passage.score.toFixed(3)}
+                                    </small>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += `<p><em>No relevant passages found.</em></p>`;
+                    }
+                    
+                    showResult('queryResult', html, 'success');
+                } else {
+                    showResult('queryResult', 
+                        `❌ <strong>Query Failed</strong><br>
+                         ${result.detail || 'Unknown error occurred'}`, 
+                        'error');
+                }
+                
+            } catch (error) {
+                console.error('Query error:', error);
+                showResult('queryResult', 
+                    `❌ <strong>Network Error</strong><br>
+                     ${error.message}<br>
+                     <small>Make sure the server is running on ${BASE_URL}</small>`, 
+                    'error');
+            }
+        }
+        
+        async function testHealthCheck() {
+            try {
+                showResult('testResult', '⏳ Testing server connection...', 'info');
+                
+                const response = await fetch(`${BASE_URL}/`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    showResult('testResult', 
+                        `✅ <strong>Server is Running!</strong><br>
+                         🌐 ${result.message}<br>
+                         📡 URL: ${BASE_URL}`, 
+                        'success');
+                } else {
+                    showResult('testResult', 
+                        `⚠️ <strong>Server Response Error</strong><br>
+                         Status: ${response.status} ${response.statusText}`, 
+                        'error');
+                }
+            } catch (error) {
+                console.error('Health check error:', error);
+                showResult('testResult', 
+                    `❌ <strong>Server Connection Failed</strong><br>
+                     ${error.message}<br>
+                     <small>Make sure the server is running:<br>
+                     <code>uvicorn app.main:app --reload --port 8000</code></small>`, 
+                    'error');
+            }
+        }
+        
+        async function askSampleQuestion() {
+            document.getElementById('questionInput').value = 'What is the pytest version mentioned in the requirements?';
+            document.getElementById('topK').value = '3';
+            await askQuestion();
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enter key support for question input
+            document.getElementById('questionInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    askQuestion();
+                }
+            });
+            
+            // Auto-focus on question input
+            document.getElementById('questionInput').focus();
+            
+            // Test server connection on page load
+            console.log('🚀 Knowledge Base Interface loaded');
+            console.log('🔗 Testing connection to:', BASE_URL);
+            
+            setTimeout(() => {
+                testHealthCheck();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

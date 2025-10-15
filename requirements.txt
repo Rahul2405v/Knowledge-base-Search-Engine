@@ -1,0 +1,34 @@
+# FastAPI Knowledge Base Search Backend
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+numpy>=1.24.0
+python-multipart>=0.0.6
+
+# Required dependencies
+PyPDF2>=3.0.0
+
+# OpenAI integration (recommended for better embeddings and generation)
+openai>=1.0.0
+
+# Groq integration (free alternative to OpenAI)
+groq>=0.4.0
+
+# Optional dependencies for enhanced functionality
+# Uncomment based on your needs:
+
+# Sentence transformers (fallback embeddings)
+sentence-transformers>=2.2.0
+torch>=2.0.0
+
+# Vector similarity search
+faiss-cpu>=1.7.4
+
+# Development and testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+httpx>=0.24.0  # Required for FastAPI TestClient
+
+# Additional utilities
+python-dotenv>=1.0.0
+importlib-metadata>=6.0.0  # backport for importlib metadata on older Pythons
